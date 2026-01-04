@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Lyrics</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+  <h1>✏️ Manage Lyrics</h1>
+</header>
+
+<div class="container">
+
+  <div class="logout">
+    <a href="/logout">🚪 Logout</a>
+  </div>
+
+  <div class="card">
+    <input id="title" placeholder="Titre">
+    <textarea id="text" placeholder="Lyrics"></textarea>
+    <button onclick="save()">Save</button>
+  </div>
+
+</div>
+
+<script>
+function save() {
+  fetch("/lyrics", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      title: title.value,
+      text: text.value,
+      category: category.value
+    })
+  }).then(() => alert("Lyrics saved"));
+}
+</script>
+<!-- addddddddddddddddddddddddddd -->
+<select id="category">
+  <option value="assemblee">Assemblée</option>
+  <option value="chorale">Chorale</option>
+</select>
+<!-- adddddddddddddddddddddddddddddddddd -->
+</body>
+</html>

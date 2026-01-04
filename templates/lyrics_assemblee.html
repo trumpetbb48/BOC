@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chants Assemblée</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+  <h1>🙏 Chants de l’Assemblée</h1>
+</header>
+
+<div class="container">
+
+  <!-- Champ recherche -->
+  <input
+    type="text"
+    id="search"
+    placeholder="🔍 Rechercher un chant..."
+    onkeyup="filterSongs()"
+  >
+
+  <div id="lyrics"></div>
+
+</div>
+
+<script>
+let songs = [];
+
+fetch("/lyrics/assemblee")
+  .then(res => res.json())
+  .then(data => {
+    songs = data;
+    render(songs);
+  });
+
+function render(data) {
+  const c = document.getElementById("lyrics");
+  c.innerHTML = "";
+  data.forEach((l, i) => {
+    c.innerHTML += `
+      <div class="card">
+        <div class="lyric-title" onclick="toggle(${i})">
+          🎵 ${l.title}
+        </div>
+        <div class="lyric-text" id="text-${i}" style="display:none">
+          ${l.text}
+        </div>
+      </div>
+    `;
+  });
+}
+
+function filterSongs() {
+  const q = document.getElementById("search").value.toLowerCase();
+  const filtered = songs.filter(s =>
+    s.title.toLowerCase().includes(q)
+  );
+  render(filtered);
+}
+
+function toggle(i) {
+  const el = document.getElementById("text-" + i);
+  el.style.display = el.style.display === "none" ? "block" : "none";
+}
+</script>
+
+</body>
+</html>

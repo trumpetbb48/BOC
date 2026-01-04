@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Accès Chorale</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+  <h1>🎶 Accès Chorale</h1>
+</header>
+
+<div class="container">
+  <div class="card">
+    <form method="post">
+      <input type="password" name="password" placeholder="Mot de passe chorale" required>
+      <button type="submit">Entrer</button>
+      {% if error %}
+        <p style="color:red">{{ error }}</p>
+      {% endif %}
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

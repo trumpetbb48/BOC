@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Body of Christ</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+  <h1>✝️ Body of Christ</h1>
+  <p>Application de chants pour l’église</p>
+</header>
+
+<div class="container">
+
+  <div class="card" style="text-align:center">
+    <h2>Bienvenue</h2>
+    <p>
+      Cette application permet d’accéder facilement aux paroles des chants
+      pour l’assemblée et la chorale.
+    </p>
+  </div>
+
+  <div class="card" style="text-align:center">
+    <a href="/assemblee">
+      <button>🙏 Chants de l’Assemblée</button>
+    </a>
+  </div>
+
+  <div class="card" style="text-align:center">
+    <a href="/chorale">
+      <button>🎶 Chants de la Chorale</button>
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>
